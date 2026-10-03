@@ -1,0 +1,24 @@
+From: Task Order Portal <noreply@portal.example-prime.com>
+To: bd-team@sample-client.test
+Subject: [TO Portal] Task Order Request TOR-2026-118 released
+Date: Fri, 02 Oct 2026 11:00:00 -0400
+Message-ID: <tor-2026-118@portal.example-prime.com>
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<h2>Task Order Request Released</h2>
+<p>A new task order request is available to teaming partners on the vehicle below.</p>
+<table border="1" cellpadding="4">
+<tr><th>TOR Number</th><td>TOR-2026-118</td></tr>
+<tr><th>Title</th><td>Application Modernization and Sustainment - Task Order 7</td></tr>
+<tr><th>Vehicle</th><td>EITS IDIQ</td></tr>
+<tr><th>Ordering Agency</th><td>Department of Veterans Affairs</td></tr>
+<tr><th>NAICS</th><td>541512</td></tr>
+<tr><th>Competition</th><td>Fair opportunity among EITS IDIQ holders (no set-aside)</td></tr>
+<tr><th>Proposals Due</th><td>October 24, 2026 12:00 PM ET</td></tr>
+<tr><th>Place of Performance</th><td>Remote / Austin, TX</td></tr>
+<tr><th>Scope Summary</th><td>Modernize and sustain 9 Java and .NET applications, move them to
+containers on AWS GovCloud, and stand up DevSecOps pipelines with automated testing.</td></tr>
+</table>
+<p><a href="https://portal.example-prime.com/tor/2026-118">Open in portal</a></p>
+</body></html>

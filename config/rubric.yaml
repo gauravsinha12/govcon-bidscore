@@ -1,0 +1,116 @@
+# Bid/No-Bid rubric — edit this file, not the code.
+# Bump `version` whenever criteria or anchors change: the LLM result cache is keyed on it,
+# so a new version re-scores everything and an unchanged version never drifts.
+
+version: "2026-10-03.1"
+
+company:
+  name: "Sample Client (sanitized)"
+  # Set-aside programs the company is certified for. SB = small business.
+  certifications: [SB, WOSB]
+  naics:
+    core: ["541512", "541519", "541511"]
+    secondary: ["518210", "541611", "541690"]
+  # Contract vehicles the company can respond under. OPEN MARKET = no vehicle needed.
+  vehicles_held: ["OPEN MARKET", "GSA MAS", "EITS IDIQ"]
+  preferred_agencies:
+    - "Department of Homeland Security"
+    - "Department of Veterans Affairs"
+    - "Department of Health and Human Services"
+  # Places of performance the company can staff without relocation.
+  regions: ["REMOTE", "DC", "VA", "MD", "TX"]
+  capabilities:
+    - cloud migration
+    - govcloud
+    - devsecops
+    - modernization
+    - service desk
+    - help desk
+    - servicenow
+    - data analytics
+    - dashboards
+    - data pipelines
+    - salesforce
+    - case management
+    - software development
+  past_performance:
+    - "Migrated 40 legacy applications to AWS GovCloud with DevSecOps pipelines for a DHS component (2023-2025)"
+    - "Tier 1/Tier 2 service desk and ServiceNow administration for 6,000 VA users (2022-present)"
+    - "Salesforce case management build and enhancements for an HHS grants office (2024)"
+    - "Data pipelines and analytics dashboards for an NIH institute (2025)"
+  # Any of these in the title/description is an automatic no-bid.
+  exclusions:
+    - construction
+    - janitorial
+    - custodial
+    - facility clearance
+    - ts/sci facility
+    - furniture
+    - vehicle maintenance
+
+tiers:
+  tier1: 90   # >= 90  -> Tier 1
+  tier2: 70   # 70-89  -> Tier 2, below -> Tier 3
+
+criteria:
+  - id: naics_fit
+    label: NAICS fit
+    weight: 20
+    type: rule
+    knockout_if_zero: false
+
+  - id: set_aside_eligibility
+    label: Set-aside eligibility
+    weight: 15
+    type: rule
+    knockout_if_zero: true      # cannot legally bid
+
+  - id: vehicle_access
+    label: Contract vehicle access
+    weight: 10
+    type: rule
+    knockout_if_zero: true      # cannot respond without the vehicle
+
+  - id: response_runway
+    label: Time to respond
+    weight: 10
+    type: rule
+    knockout_if_zero: false
+
+  - id: agency_relationship
+    label: Agency relationship
+    weight: 10
+    type: rule
+    knockout_if_zero: false
+
+  - id: place_of_performance
+    label: Place of performance
+    weight: 5
+    type: rule
+    knockout_if_zero: false
+
+  - id: scope_fit
+    label: Scope fit
+    weight: 20
+    type: judgment
+    knockout_if_zero: false
+    anchors:
+      100: "The core work is squarely inside the company's listed capabilities; no teaming partner needed."
+      50: "The work partly overlaps the capabilities; a significant piece would need a teaming partner."
+      0: "The core work is outside the company's capabilities."
+
+  - id: past_performance_relevance
+    label: Past performance relevance
+    weight: 10
+    type: judgment
+    knockout_if_zero: false
+    anchors:
+      100: "A listed past performance is directly comparable: same type of work at a similar scale."
+      50: "A listed past performance is related but differs in work type, scale or customer."
+      0: "No listed past performance is relevant."
+
+actions:
+  tier1: "Bid: assign a capture lead today, log the Q&A deadline, start the compliance matrix."
+  tier2: "Review: capture lead reads the full solicitation within 48 hours and decides on teaming for the gaps listed."
+  tier3: "No-bid: archive unless there is a strategic reason to pursue."
+  knockout: "No-bid: {reason}."

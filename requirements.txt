@@ -1,0 +1,15 @@
+fastapi>=0.110
+uvicorn>=0.29
+SQLAlchemy>=2.0
+psycopg[binary]>=3.1     # Postgres driver; not needed for the SQLite demo
+APScheduler>=3.10,<4
+PyYAML>=6.0
+Jinja2>=3.1
+httpx>=0.27
+beautifulsoup4>=4.12
+anthropic>=0.122
+pydantic>=2.6
+pytest>=8.0
+# Gmail API (only for live intake; the demo reads .eml files from samples/)
+google-api-python-client>=2.120
+google-auth-oauthlib>=1.2
